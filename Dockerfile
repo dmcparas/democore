@@ -10,8 +10,8 @@ WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 
 # Expose Spring Boot and gRPC ports
-EXPOSE 8081
+EXPOSE 8080
 EXPOSE 9090
 
 # Run the application and bind to all interfaces
-ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=8081", "--server.address=0.0.0.0"]
+ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=8080", "--server.address=0.0.0.0"]
