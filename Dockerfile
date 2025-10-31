@@ -1,17 +1,17 @@
-# Use OpenJDK 17 as the base image
-FROM openjdk:17-jdk-slim
-
-# Set working directory inside the container
+# Stage 1: Build the JAR using Maven
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copy the built JAR file into the container
-COPY target/coreservice-0.0.1-SNAPSHOT.jar app.jar
+# Stage 2: Run the JAR with OpenJDK
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 
-# Expose default Spring Boot port
+# Expose Spring Boot and gRPC ports
 EXPOSE 8081
-
-# Expose gRPC port (if used)
 EXPOSE 9090
 
-# Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Run the application and bind to all interfaces
+ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=8081", "--server.address=0.0.0.0"]
