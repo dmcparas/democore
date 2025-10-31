@@ -23,18 +23,19 @@ public class UserGraphQLController {
 
     private final RestTemplate restTemplate = new RestTemplate();
     ObjectMapper objectMapper = new ObjectMapper();
+    String baseUrl = "http://localhost:8081";
 
     @GetMapping("/sequence")
     public User getUserInfoSequence() {
-        String url1 = "http://localhost:8081/graphql";
+        String url1 = baseUrl + "/graphql";
 
         String query1 = "query { user(id: \"123\") { id name email } }";
 
-        String url2 = "http://localhost:8081/graphql";
+        String url2 = baseUrl + "/graphql";
 
         String query2 = "query { user(id: \"456\") { id name email } }";
 
-        String url3 = "http://localhost:8081/graphql";
+        String url3 = baseUrl + "/graphql";
 
         String query3 = "query { user(id: \"789\") { id name email } }";
 
@@ -67,7 +68,7 @@ public class UserGraphQLController {
 
     @GetMapping("/parallel")
     public User getUserInfoParallel() {
-        String url = "http://localhost:8081/graphql";
+        String url = baseUrl + "/graphql";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
