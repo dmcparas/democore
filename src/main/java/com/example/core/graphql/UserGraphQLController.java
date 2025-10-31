@@ -23,7 +23,7 @@ public class UserGraphQLController {
 
     private final RestTemplate restTemplate = new RestTemplate();
     ObjectMapper objectMapper = new ObjectMapper();
-    String baseUrl = "http://localhost:8081";
+    String baseUrl = "https://democore.onrender.com";
 
     @GetMapping("/sequence")
     public User getUserInfoSequence() {
