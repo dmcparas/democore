@@ -23,19 +23,21 @@ public class UserGraphQLController {
 
     private final RestTemplate restTemplate = new RestTemplate();
     ObjectMapper objectMapper = new ObjectMapper();
-    String baseUrl = "https://democore.onrender.com";
+    String baseUrl1 = "https://democore.onrender.com";
+    String baseUrl2 = "https://democore-1.onrender.com";
+    String baseUrl3 = "https://democore-2.onrender.com";
 
     @GetMapping("/sequence")
     public User getUserInfoSequence() {
-        String url1 = baseUrl + "/graphql";
+        String url1 = baseUrl1 + "/graphql";
 
         String query1 = "query { user(id: \"123\") { id name email } }";
 
-        String url2 = baseUrl + "/graphql";
+        String url2 = baseUrl2 + "/graphql";
 
         String query2 = "query { user(id: \"456\") { id name email } }";
 
-        String url3 = baseUrl + "/graphql";
+        String url3 = baseUrl3 + "/graphql";
 
         String query3 = "query { user(id: \"789\") { id name email } }";
 
@@ -68,7 +70,9 @@ public class UserGraphQLController {
 
     @GetMapping("/parallel")
     public User getUserInfoParallel() {
-        String url = baseUrl + "/graphql";
+        String url1 = baseUrl1 + "/graphql";
+        String url2 = baseUrl2 + "/graphql";
+        String url3 = baseUrl3 + "/graphql";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -77,19 +81,19 @@ public class UserGraphQLController {
         CompletableFuture<ResponseEntity<String>> future1 = CompletableFuture.supplyAsync(() -> {
             Map<String, Object> requestBody = Map.of("query", "query { user(id: \"123\") { id name email } }");
             HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
-            return restTemplate.postForEntity(url, request, String.class);
+            return restTemplate.postForEntity(url1, request, String.class);
         });
 
         CompletableFuture<ResponseEntity<String>> future2 = CompletableFuture.supplyAsync(() -> {
             Map<String, Object> requestBody = Map.of("query", "query { user(id: \"456\") { id name email } }");
             HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
-            return restTemplate.postForEntity(url, request, String.class);
+            return restTemplate.postForEntity(url2, request, String.class);
         });
 
         CompletableFuture<ResponseEntity<String>> future3 = CompletableFuture.supplyAsync(() -> {
             Map<String, Object> requestBody = Map.of("query", "query { user(id: \"789\") { id name email } }");
             HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
-            return restTemplate.postForEntity(url, request, String.class);
+            return restTemplate.postForEntity(url3, request, String.class);
         });
 
         // Wait for all three futures to complete

@@ -17,7 +17,9 @@ public class UserRestController {
     private final RestTemplate restTemplate = new RestTemplate();
 
     private final ApiService apiService = new ApiService();
-    String baseUrl = "https://democore.onrender.com";
+    String baseUrl1 = "https://democore.onrender.com";
+    String baseUrl2 = "https://democore-1.onrender.com";
+    String baseUrl3 = "https://democore-2.onrender.com";
 
     @GetMapping("/{id}")
     public User getUser(@PathVariable String id) {
@@ -26,9 +28,9 @@ public class UserRestController {
 
     @GetMapping("/sequence")
     public User getUserInfo() {
-        String url1 = baseUrl + "/api/users/1";
-        String url2 = baseUrl + "/api/users/2";
-        String url3 = baseUrl + "/api/users/3";
+        String url1 = baseUrl1 + "/api/users/1";
+        String url2 = baseUrl2 + "/api/users/2";
+        String url3 = baseUrl3 + "/api/users/3";
         User user;
         user = restTemplate.getForObject(url1, User.class);
         user = restTemplate.getForObject(url2, User.class);
@@ -43,9 +45,9 @@ public class UserRestController {
 
         try {
             // Define API URLs
-            String url1 = baseUrl + "/api/users/1";
-            String url2 = baseUrl + "/api/users/2";
-            String url3 = baseUrl + "/api/users/3";
+            String url1 = baseUrl1 + "/api/users/1";
+            String url2 = baseUrl2 + "/api/users/2";
+            String url3 = baseUrl3 + "/api/users/3";
 
             // Create callables for each API
             List<Callable<String>> tasks = Arrays.asList(
