@@ -6,4 +6,49 @@ type User {
     id: String
     name: String
     email: String
+    address: String
+    phoneNumber: String
+    bio: String
+    hobbies: [String]
+    socialLinks: SocialLinks
+    profilePictureBase64: String
+    notes: String
+    tags: [String]
+    preferences: Preferences
+}
+
+type SocialLinks {
+    facebook: String
+    twitter: String
+    linkedin: String
+    instagram: String
+    github: String
+    youtube: String
+    tiktok: String
+}
+
+type Preferences {
+    theme: String
+    notifications: Boolean
+    language: String
+    timezone: String
+    dashboard: Dashboard
+    privacy: Privacy
+    shortcuts: [String]
+    bookmarks: [Bookmark]
+}
+
+type Dashboard {
+    layout: String
+    widgets: [String]
+}
+
+type Privacy {
+    tracking: Boolean
+    adPersonalization: Boolean
+}
+
+type Bookmark {
+    title: String
+    url: String
 }
