@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "*")
 public class UserRestController {
 
     private final RestTemplate restTemplate = new RestTemplate();
@@ -23,7 +24,12 @@ public class UserRestController {
 
     @GetMapping("/{id}")
     public User getUser(@PathVariable String id) {
-        return new User(id, "John Doe", "john@example.com");
+        return new User(id, "John Doe", "john@example.com", true);
+    }
+
+    @GetMapping("/smallerPayload/{id}")
+    public User getUserSmallerPayload(@PathVariable String id) {
+        return new User(id, "John Doe", "john@example.com", false);
     }
 
     @GetMapping("/sequence")
