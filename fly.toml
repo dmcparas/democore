@@ -1,0 +1,22 @@
+app = "democore"   # or whatever Fly app name you picked
+primary_region = "lhr"  # your nearest region
+
+[build]
+dockerfile = "Dockerfile"
+
+[[services]]
+internal_port = 9090
+protocol = "tcp"
+
+[[services.ports]]
+handlers = ["tls"]
+port = 443
+
+[[services.ports]]
+port = 80
+handlers = ["http_redirect"]
+
+[[services.tcp_checks]]
+interval = "15s"
+timeout = "2s"
+grace_period = "10s"
