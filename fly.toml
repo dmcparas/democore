@@ -1,19 +1,19 @@
-app = "democore"   # or whatever Fly app name you picked
-primary_region = "lhr"  # your nearest region
+app = "democore"
+primary_region = "lhr"
 
 [build]
 dockerfile = "Dockerfile"
 
 [[services]]
 internal_port = 9090
-protocol = "tls"
+protocol = "tcp"
 
 [[services.ports]]
-handlers = ["tls"]
-port = 443
+port = 443   # external port for gRPC TLS
+# no handlers needed, raw TCP → Spring TLS handles everything
 
 [[services.ports]]
-port = 80
+port = 80    # optional HTTP port
 handlers = ["edge_http"]
 
 [[services.tcp_checks]]
