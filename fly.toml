@@ -14,7 +14,7 @@ port = 443
 
 [[services.ports]]
 port = 80
-handlers = ["http_redirect"]
+handlers = ["http"]
 
 [[services.tcp_checks]]
 interval = "15s"
