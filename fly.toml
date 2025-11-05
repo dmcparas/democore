@@ -14,7 +14,7 @@ port = 443
 
 [[services.ports]]
 port = 80
-handlers = ["http"]
+handlers = ["edge_http"]
 
 [[services.tcp_checks]]
 interval = "15s"
