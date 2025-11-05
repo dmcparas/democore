@@ -6,7 +6,7 @@ dockerfile = "Dockerfile"
 
 [[services]]
 internal_port = 9090
-protocol = "tcp"
+protocol = "tls"
 
 [[services.ports]]
 handlers = ["tls"]
