@@ -5,12 +5,27 @@ primary_region = "lhr"
 dockerfile = "Dockerfile"
 
 [[services]]
+# gRPC service
 internal_port = 9090
 protocol = "tcp"
 
 [[services.ports]]
-port = 80   # external port for plaintext gRPC
-# NO handlers needed → raw TCP
+port = 9090          # External port for gRPC
+# no handlers → raw TCP for gRPC
+
+[[services.tcp_checks]]
+interval = "15s"
+timeout = "2s"
+grace_period = "10s"
+
+[[services]]
+# HTTP service
+internal_port = 8080
+protocol = "tcp"
+
+[[services.ports]]
+port = 80            # External port for HTTP
+handlers = ["http"]  # Edge HTTP handler for REST
 
 [[services.tcp_checks]]
 interval = "15s"
