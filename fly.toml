@@ -8,13 +8,10 @@ dockerfile = "Dockerfile"
 internal_port = 9090
 protocol = "tcp"
 
+# External port for plaintext gRPC traffic
 [[services.ports]]
-port = 443   # external port for gRPC TLS
-# no handlers needed, raw TCP → Spring TLS handles everything
-
-[[services.ports]]
-port = 80    # optional HTTP port
-handlers = ["edge_http"]
+port = 80
+handlers = ["http"]
 
 [[services.tcp_checks]]
 interval = "15s"
