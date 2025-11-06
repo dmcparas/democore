@@ -14,4 +14,4 @@ EXPOSE 8080
 EXPOSE 9090
 
 # Run the application and bind to all interfaces
-ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=8080", "--grpc.server.port=9090", "--server.address=0.0.0.0"]
+ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=8080", "--server.address=0.0.0.0", "--grpc.server.port=9090", "--grpc.server.address=0.0.0.0", "--grpc.server.security.enabled=false" ]
