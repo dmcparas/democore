@@ -8,10 +8,9 @@ dockerfile = "Dockerfile"
 internal_port = 9090
 protocol = "tcp"
 
-# External port for plaintext gRPC traffic
 [[services.ports]]
-port = 80
-handlers = ["http"]
+port = 80   # external port for plaintext gRPC
+# NO handlers needed → raw TCP
 
 [[services.tcp_checks]]
 interval = "15s"
