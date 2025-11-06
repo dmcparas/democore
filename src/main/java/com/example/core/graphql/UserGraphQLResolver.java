@@ -13,6 +13,6 @@ public class UserGraphQLResolver {
 
     @QueryMapping
     public User user(@Argument String id) {
-        return new User(id, "John Doe", "john@example.com", true);
+        return new User(id, "John Doe", "john@example.com", 55);
     }
 }

@@ -18,17 +18,9 @@ public class UserRestController {
     private final RestTemplate restTemplate = new RestTemplate();
 
     private final ApiService apiService = new ApiService();
-    String baseUrl1 = "https://democore.onrender.com";
-    String baseUrl2 = "https://democore-1.onrender.com";
-    String baseUrl3 = "https://democore-2.onrender.com";
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable String id) {
-        return new User(id, "John Doe", "john@example.com", true);
-    }
-
-    @GetMapping("/smallerPayload/{id}")
-    public User getUserSmallerPayload(@PathVariable String id) {
-        return new User(id, "John Doe", "john@example.com", false);
+    public User getUser(@PathVariable String id, @RequestParam(required = false, defaultValue = "55") int size) {
+        return new User(id, "John Doe", "john@example.com", size);
     }
 }
