@@ -1,7 +1,7 @@
 app = "democore"
 primary_region = "lhr"
 
-[build]
+
 dockerfile = "Dockerfile"
 
 [[services]]
