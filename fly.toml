@@ -1,7 +1,7 @@
 app = "democore"
 primary_region = "lhr"
 
-
+[build]
 dockerfile = "Dockerfile"
 
 [[services]]
@@ -25,7 +25,10 @@ protocol = "tcp"
 
 [[services.ports]]
 port = 80            # External port for HTTP
-handlers = ["http"]  # Edge HTTP handler for REST
+handlers = ["http"]
+[[services.ports]]
+port = 443
+handlers = ["tls", "http"]# Edge HTTP handler for REST
 
 [[services.tcp_checks]]
 interval = "15s"
