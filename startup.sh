@@ -1,11 +1,9 @@
 #!/bin/bash
-set -e
-
-echo "Waiting for Zookeeper to be ready..."
-until nc -z zookeeper 2181; do
-  sleep 2
+# wait for zookeeper
+echo "Waiting for Zookeeper..."
+while ! nc -z zk 2181; do
+  sleep 1
 done
 
 echo "Starting Kafka..."
-/etc/confluent/docker/run &
-wait
+exec /etc/confluent/docker/run

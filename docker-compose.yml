@@ -22,7 +22,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zk.internal:2181
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
       # Use 'localhost' for local testing, replace with 'democore.internal' in Fly
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://democore.internal:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka.internal:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     volumes:
@@ -38,7 +38,7 @@ services:
       - "9090:9090"
     environment:
       # Local testing points to Docker Compose Kafka
-      SPRING_KAFKA_BOOTSTRAP_SERVERS: democore.internal:9092
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka.internal:9092
       SERVER_PORT: 8080
     depends_on:
       - kafka
