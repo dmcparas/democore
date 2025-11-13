@@ -45,10 +45,10 @@ protocol = "tcp"
 port = 9092                   # External port for Kafka broker (TCP)
 # handlers = ["tls"]          # uncomment if Kafka uses TLS; otherwise plain TCP
 
-[[services.tcp_checks]]
-interval = "15s"
-timeout = "2s"
-grace_period = "180s"
+#[[services.tcp_checks]]
+#interval = "15s"
+#timeout = "2s"
+#grace_period = "180s"
 
 # fly.toml for zookeeper
 app = "zk"
