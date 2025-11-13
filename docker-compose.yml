@@ -25,6 +25,9 @@ services:
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://democore.internal:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - ./startup.sh:/usr/local/bin/startup.sh
+    entrypoint: [ "/usr/local/bin/startup.sh" ]
 
   # === Spring Boot + gRPC App ===
   core-service:
