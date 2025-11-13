@@ -16,7 +16,7 @@ port = 9090          # External port for gRPC
 [[services.tcp_checks]]
 interval = "15s"
 timeout = "2s"
-grace_period = "10s"
+grace_period = "180s"
 
 [[services]]
 # HTTP service
@@ -33,7 +33,7 @@ handlers = ["tls", "http"]# Edge HTTP handler for REST
 [[services.tcp_checks]]
 interval = "15s"
 timeout = "2s"
-grace_period = "10s"
+grace_period = "180s"
 # Kafka Broker Service
 [[services]]
 internal_port = 9092          # Kafka broker's internal port
