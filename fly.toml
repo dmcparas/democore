@@ -34,3 +34,18 @@ handlers = ["tls", "http"]# Edge HTTP handler for REST
 interval = "15s"
 timeout = "2s"
 grace_period = "10s"
+# Kafka Broker Service
+[[services]]
+internal_port = 9092          # Kafka broker's internal port
+protocol = "tcp"
+
+# Optional: make Kafka reachable publicly (for debugging)
+# If you only want it reachable to other Fly apps, this alone is enough.
+[[services.ports]]
+port = 9092                   # External port for Kafka broker (TCP)
+# handlers = ["tls"]          # uncomment if Kafka uses TLS; otherwise plain TCP
+
+[[services.tcp_checks]]
+interval = "15s"
+timeout = "2s"
+grace_period = "10s"
