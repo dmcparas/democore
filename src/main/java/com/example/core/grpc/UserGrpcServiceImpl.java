@@ -31,4 +31,44 @@ public class UserGrpcServiceImpl extends UserServiceGrpc.UserServiceImplBase {
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
+
+//    @Override
+//    public StreamObserver<FileUploadRequest> uploadFile(StreamObserver<FileUploadResponse> responseObserver) {
+//        return new StreamObserver<>() {
+//            FileOutputStream outputStream;
+//            String filename;
+//
+//            @Override
+//            public void onNext(FileUploadRequest request) {
+//                try {
+//                    if (outputStream == null) {
+//                        filename = request.getFilename();
+//                        outputStream = new FileOutputStream("uploads/" + filename);
+//                    }
+//                    outputStream.write(request.getContent().toByteArray());
+//                } catch (IOException e) {
+//                    responseObserver.onError(e);
+//                }
+//            }
+//
+//            @Override
+//            public void onError(Throwable t) {
+//                t.printStackTrace();
+//            }
+//
+//            @Override
+//            public void onCompleted() {
+//                try {
+//                    if (outputStream != null) outputStream.close();
+//                    responseObserver.onNext(FileUploadResponse.newBuilder()
+//                            .setSuccess(true)
+//                            .setMessage("File uploaded successfully: " + filename)
+//                            .build());
+//                    responseObserver.onCompleted();
+//                } catch (IOException e) {
+//                    responseObserver.onError(e);
+//                }
+//            }
+//        };
+//    }
 }
