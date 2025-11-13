@@ -49,3 +49,11 @@ port = 9092                   # External port for Kafka broker (TCP)
 # interval = "15s"
 # timeout = "2s"
 # grace_period = "10s"
+
+# fly.toml for zookeeper
+app = "zk"
+[[services]]
+internal_port = 2181
+protocol = "tcp"
+[[services.ports]]
+port = 2181

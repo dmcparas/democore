@@ -6,6 +6,8 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
 
   # === Kafka Broker ===
   kafka:
@@ -17,12 +19,14 @@ services:
       - "9092:9092"
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ZOOKEEPER_CONNECT: zk.internal:2181
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      # Use 'localhost' for local testing, replace with 'democore.internal' in Fly
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://democore.internal:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
-  # === Your Spring Boot + gRPC App ===
+  # === Spring Boot + gRPC App ===
   core-service:
     build: .
     container_name: core-service
@@ -30,7 +34,8 @@ services:
       - "8080:8080"
       - "9090:9090"
     environment:
-      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      # Local testing points to Docker Compose Kafka
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: democore.internal:9092
       SERVER_PORT: 8080
     depends_on:
       - kafka
